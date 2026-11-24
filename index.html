@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14102b">
+<title>Nearby – Ping it. Match it. Done.</title>
+<style>
+:root{--n:#14102b;--p:#1d1740;--p2:#2a2262;--ln:#3a2f86;--co:#ff5c7a;--su:#ffc933;--cy:#3de0ff;--mi:#5af2b0;--tx:#f4f1ff;--mu:#a59fd0}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;background:#0b0820}
+body{color:var(--tx);font:16px/1.45 "Nunito","Trebuchet MS",system-ui,sans-serif}
+#app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;background:radial-gradient(500px 300px at 90% -5%,#3a2a8c66,transparent),var(--n);overflow:hidden;border-inline:1px solid #241c5a}
+.scr{flex:1;overflow-y:auto;padding:16px;padding-top:calc(16px + env(safe-area-inset-top));padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;gap:10px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid var(--ln);background:var(--p)}
+.top b{flex:1;font-size:18px}.top+.scr{padding-top:16px}
+nav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--p);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+nav button{background:none;border:0;color:var(--mu);font:inherit;font-size:12px;padding:8px 0 7px;cursor:pointer;position:relative}
+nav button span{display:block;font-size:22px}nav button.on{color:var(--su)}
+nav i{position:absolute;top:4px;left:55%;background:var(--co);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:9px;padding:0 5px}
+h1{font-size:34px;margin:6px 0}h2{font-size:20px;margin:0 0 10px}
+.hero{text-align:center;padding:40px 8px 24px}.hero p{color:var(--mu);max-width:300px;margin:6px auto 0}
+label{display:block;font-size:13px;color:var(--mu);margin:12px 0 4px}
+input,select{width:100%;padding:12px;border-radius:12px;border:2px solid var(--ln);background:#0f0b26;color:var(--tx);font:inherit}
+input:focus-visible,button:focus-visible{outline:3px solid var(--cy);outline-offset:2px}
+input[type=checkbox]{width:auto;margin-right:8px}.ck{display:flex;align-items:center;font-size:14px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:13px 14px;margin-top:12px;font:inherit;font-weight:700;color:#1a1033;background:var(--su);box-shadow:0 4px 0 #b08700;cursor:pointer}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b08700}.btn:disabled{opacity:.6}
+.btn.co{background:var(--co);color:#fff;box-shadow:0 4px 0 #a02a45}.btn.cy{background:var(--cy);box-shadow:0 4px 0 #1f90a8}
+.btn.gh{background:var(--p2);color:var(--tx);box-shadow:0 4px 0 #130e33}.btn.on{background:var(--mi);box-shadow:0 4px 0 #1f9c6c}
+.btn.s{width:auto;margin:0;padding:10px 14px}.btn.big{font-size:18px;padding:16px;margin:0}
+.lnk{background:none;border:0;color:var(--cy);font:inherit;margin-top:14px;width:100%;cursor:pointer}
+.err{color:var(--co);font-size:14px;min-height:20px;margin-top:8px}
+.card{background:var(--p);border:1px solid var(--ln);border-radius:18px;padding:14px;margin-bottom:12px}
+.of{background:var(--p2);border-radius:14px;padding:12px;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.row .s{flex:0 0 auto}
+.mu{color:var(--mu);font-size:13px}.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;background:var(--p2)}
+.tag.g{background:#12503c;color:var(--mi)}.tag.y{background:#4d3b05;color:var(--su)}.tag.r{background:#55162a;color:var(--co)}
+.rev{border-left:3px solid var(--su);padding:1px 8px;margin:6px 0;font-size:14px}
+.sv{display:grid;grid-template-columns:1fr 96px 44px;gap:6px;margin:6px 0}.sv .btn{margin:0;padding:8px}
+.em{display:flex;gap:8px;flex-wrap:wrap}.em button{font-size:26px;background:var(--p2);border:2px solid transparent;border-radius:14px;padding:6px 10px;cursor:pointer}.em button.on{border-color:var(--su)}
+.dots{display:flex;gap:6px;margin-bottom:14px}.dots i{flex:1;height:5px;border-radius:3px;background:var(--ln)}.dots i.on{background:var(--su)}
+.bar{height:10px;background:#0d0a22;border-radius:6px;overflow:hidden;border:1px solid var(--ln)}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--co),var(--su))}
+.stars button{background:none;border:0;font-size:24px;color:var(--su);cursor:pointer;padding:2px}
+.empty{color:var(--mu);text-align:center;padding:24px 8px}
+svg.map{width:100%;display:block;border-radius:14px;background:#0f0b26;cursor:crosshair}
+.sweep{transform-origin:160px 160px;animation:sw 4s linear infinite}@keyframes sw{to{transform:rotate(360deg)}}
+#toast{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top));display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:9}
+#toast div{background:var(--su);color:#1a1033;padding:10px 16px;border-radius:14px;font-weight:700;box-shadow:0 4px 12px #0008;animation:in .3s;max-width:100%}
+@keyframes in{from{transform:translateY(-10px);opacity:0}}
+.pc{position:fixed;left:50%;top:40%;font-size:24px;pointer-events:none;animation:pop 1.2s ease-out forwards;z-index:9}
+@keyframes pop{to{transform:translate(var(--x),var(--y)) rotate(360deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.sweep,.pc,#toast div{animation:none}}
+</style>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+</head><body><div id="app"></div><div id="toast"></div>
+<script>
+const C=window.NEARBY_CONFIG||{},sb=(C.SUPABASE_URL&&window.supabase)?supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY):null;
+const $=id=>document.getElementById(id),fmt=n=>"₦"+Math.round(n).toLocaleString("en-NG"),R5=n=>Math.round(n/500)*500;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let U,P,O=[],PV=[],me={lat:5.516,lng:5.75},A={...me},cur="radar",seen=new Set(),prev={},open={},RV={},nid=1,rw=new Set(L.get("nb_rw",[])),T0;
+const KX=()=>111.32*Math.cos(A.lat*Math.PI/180);
+function hav(a,b){const r=Math.PI/180,x=Math.sin((b.lat-a.lat)*r/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin((b.lng-a.lng)*r/2)**2;return 12742*Math.asin(Math.sqrt(x))}
+const wd=s=>String(s).toLowerCase().split(/[^a-z]+/).filter(w=>w.length>2),hit=(q,s)=>wd(q).some(a=>wd(s).some(b=>a.slice(0,4)==b.slice(0,4)));
+const stars=n=>"★".repeat(Math.round(n))+"☆".repeat(5-Math.round(n));
+const V=[["n1","Emeka Pipes","🔧",.8,.5,4.6,212,[["Plumbing",8000],["Water heater repair",12000]]],["n2","Sola Fixit","🛠️",-1.9,1.2,4.4,96,[["Plumbing",6500],["Carpentry",9000]]],["n3","Brightspark","⚡",1.5,-1.1,4.9,340,[["Electrical wiring",12000],["Generator repair",14000]]],["n4","Mama Neat","🧽",.3,-2.4,4.8,180,[["House cleaning",7000],["Laundry",4000]]],["n5","AutoDoc","🚗",-.9,-.4,4.5,128,[["Car mechanic",15000],["Car wash",3000]]],["n6","Pixel Tola","🎨",2,1.6,4.7,87,[["Graphic design",12000],["Logo design",10000],["Video editing",20000]]],["n7","Snap Dayo","📸",3.4,-1.5,4.6,63,[["Photography",30000],["Videography",45000]]]];
+const DREV=[{stars:5,author_name:"Tunde",body:"Arrived quickly, fair price."},{stars:4,author_name:"Ada",body:"Good work, a little late."}];
+const LOGO=`<svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true"><rect width="84" height="84" rx="24" fill="#ff5c7a"/><path d="M42 16c-10 0-18 8-18 18 0 13 18 34 18 34s18-21 18-34c0-10-8-18-18-18z" fill="#fff"/><circle cx="42" cy="34" r="7" fill="#ffc933"/></svg>`;
+function toast(m){const d=document.createElement("div");d.textContent=m;$("toast").append(d);setTimeout(()=>d.remove(),3500);try{if(document.hidden&&Notification.permission=="granted")new Notification("Nearby",{body:m})}catch(e){}}
+function boom(){for(let i=0;i<24;i++){const s=document.createElement("span");s.className="pc";s.textContent=["🎉","✨","🪙","⭐"][i%4];s.style.setProperty("--x",Math.random()*500-250+"px");s.style.setProperty("--y",Math.random()*400-200+"px");document.body.append(s);setTimeout(()=>s.remove(),1300)}}
+const lvl=()=>1+Math.floor(P.xp/100);
+function xp(n){const l=lvl();P.xp+=n;if(lvl()>l)toast(`Level up! You are now level ${lvl()}`);saveP();hd()}
+function dealXP(){P.deals++;xp(50);boom()}
+function hd(){const e=$("lvl");if(e)e.textContent=`Lv ${lvl()} · ${P.xp} XP`}
+async function saveP(){P.seen=new Date().toISOString();if(P.live){P.lat=me.lat;P.lng=me.lng}if(sb){const{id,name,emoji,services,live,lat,lng,xp,deals,ready,seen}=P;const{error}=await sb.from("profiles").upsert({id,name,emoji,services,live,lat,lng,xp,deals,ready,seen});if(error)toast("Save failed: "+error.message)}else L.set("nb_p_"+U.id,P)}
+/* ---------- auth ---------- */
+const fld=(id,l,t,ac)=>`<label for="${id}">${l}</label><input id="${id}" type="${t}" autocomplete="${ac}">`;
+function authView(m,x){const ft=`<div class="mu" style="text-align:center;margin-top:22px">${sb?"Live mode":"Demo mode: accounts stay in this browser"}</div>`;
+ const h={welcome:`<div class="hero">${LOGO}<h1>Nearby</h1><p>Find trusted help around you, or get paid for what you do. Ping it, match it, done.</p></div><button class="btn co" onclick="authView('up')">Create account</button><button class="btn gh" onclick="authView('in')">I already have an account</button>`,
+ up:`<h2>Create your account</h2>${fld("name","Your name","text","name")}${fld("em","Email","email","email")}${fld("pw","Password (6+ characters)","password","new-password")}<label class="ck" style="margin-top:14px"><input type="checkbox" id="tc">I agree to the terms and privacy policy</label><div id="er" class="err"></div><button class="btn co" id="go" onclick="signUp()">Sign up</button><button class="lnk" onclick="authView('in')">Have an account? Sign in</button>`,
+ in:`<h2>Welcome back</h2>${fld("em","Email","email","email")}${fld("pw","Password","password","current-password")}<div id="er" class="err"></div><button class="btn co" id="go" onclick="signIn()">Sign in</button><button class="lnk" onclick="authView('reset')">Forgot password?</button><button class="lnk" onclick="authView('up')">New here? Create an account</button>`,
+ reset:`<h2>Reset your password</h2><p class="mu">We will email you a link to set a new one.</p>${fld("em","Email","email","email")}<div id="er" class="err"></div><button class="btn co" id="go" onclick="resetPw()">Send reset link</button><button class="lnk" onclick="authView('in')">Back to sign in</button>`,
+ verify:`<div class="hero">${LOGO}<h2 style="margin-top:12px">Check your email</h2><p>We sent a confirmation link to <b>${esc(x)}</b>. Tap it, then come back and sign in.</p></div><button class="btn co" onclick="authView('in')">Go to sign in</button>`}[m];
+ $("app").innerHTML=`<div class="scr">${m!="welcome"&&m!="verify"?`<button class="lnk" style="text-align:left;margin:0 0 10px" onclick="authView('welcome')">← Back</button>`:""}${h}${ft}</div>`}
+const err=m=>{$("er").textContent=m},busy=b=>{const g=$("go");if(g)g.disabled=!!b};
+async function signUp(){const name=$("name").value.trim(),email=$("em").value.trim().toLowerCase(),pw=$("pw").value;
+ if(!name||!/^\S+@\S+\.\S+$/.test(email))return err("Enter your name and a valid email.");if(pw.length<6)return err("Password needs at least 6 characters.");if(!$("tc").checked)return err("Please accept the terms to continue.");
+ busy(1);if(sb){const{data,error}=await sb.auth.signUp({email,password:pw,options:{data:{name}}});busy(0);if(error)return err(error.message);if(!data.session)return authView("verify",email);U={id:data.user.id,email,name};return enter()}
+ const us=L.get("nb_users",{});if(us[email]){busy(0);return err("That email already has an account. Sign in instead.")}
+ us[email]={name,pw:btoa(pw)};L.set("nb_users",us);L.set("nb_sess",email);U={id:email,email,name};busy(0);enter()}
+async function signIn(){const email=$("em").value.trim().toLowerCase(),pw=$("pw").value;if(!email||!pw)return err("Enter your email and password.");busy(1);
+ if(sb){const{data,error}=await sb.auth.signInWithPassword({email,password:pw});busy(0);if(error)return err(error.message);const u=data.user;U={id:u.id,email,name:u.user_metadata?.name};return enter()}
+ const u=L.get("nb_users",{})[email];busy(0);if(!u||u.pw!=btoa(pw))return err("Wrong email or password.");L.set("nb_sess",email);U={id:email,email,name:u.name};enter()}
+async function resetPw(){const email=$("em").value.trim();if(!email)return err("Enter your email.");if(!sb)return err("Password reset works in live mode only.");
+ const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin});err(error?error.message:"Reset link sent. Check your email.")}
+async function signOut(){if(P.live){P.live=false;await saveP()}if(sb)await sb.auth.signOut();else L.set("nb_sess",null);location.reload()}
+async function boot(){if(sb){sb.auth.onAuthStateChange(async e=>{if(e=="PASSWORD_RECOVERY"){const p=prompt("Enter a new password (6+ characters)");if(p&&p.length>=6){const{error}=await sb.auth.updateUser({password:p});toast(error?error.message:"Password updated")}}});
+  const{data}=await sb.auth.getSession(),u=data.session?.user;U=u?{id:u.id,email:u.email,name:u.user_metadata?.name}:null}
+ else{const e=L.get("nb_sess"),u=e&&L.get("nb_users",{})[e];U=u?{id:e,email:e,name:u.name}:null}
+ U?enter():authView("welcome")}
+async function enter(){if(sb){const{data,error}=await sb.from("profiles").select("*").eq("id",U.id).maybeSingle();if(error)toast("Database error: "+error.message+". Did you run schema.sql?");P=data}else P=L.get("nb_p_"+U.id,null);
+ const was=P&&P.live;P=P||{id:U.id,name:U.name||"",emoji:"🧑‍🚀",services:[],live:false,xp:0,deals:0,ready:false};P.services=P.services||[];P.live=false;if(was)saveP();
+ if(P.lat){me={lat:P.lat,lng:P.lng};A={...me}}P.ready?shell():onboard(1)}
+/* ---------- onboarding ---------- */
+function onboard(s){const dots=`<div class="dots">${[1,2,3].map(i=>`<i class="${i<=s?"on":""}"></i>`).join("")}</div>`;let b="";
+ if(s==1)b=`<h2>Pick your look</h2><label for="pn">Display name</label><input id="pn" value="${esc(P.name)}"><label>Avatar</label><div class="em">${["🧑‍🚀","🦊","🐯","🦉","🚀","🎯","🔥","🌟"].map(e=>`<button class="${e==P.emoji?"on":""}" onclick="P.emoji='${e}';onboard(1)" aria-label="Avatar ${e}">${e}</button>`).join("")}</div><button class="btn co" onclick="P.name=$('pn').value.trim()||P.name;onboard(2)">Continue</button>`;
+ if(s==2)b=`<h2>What do you offer?</h2><p class="mu">Add the services people can find you for. You can change these any time, or skip if you only want to hire.</p><div id="sv"></div>${addRow()}<button class="btn co" onclick="onboard(3)">Continue</button>`;
+ if(s==3)b=`<h2>Where are you?</h2><p class="mu">Nearby matches you with people close by. Your location is only shared while you are live.</p><button class="btn cy" onclick="locate(()=>finish())">📍 Use my location</button><button class="btn gh" onclick="finish()">Skip for now</button>`;
+ $("app").innerHTML=`<div class="scr">${dots}${b}</div>`;if(s==2)svc()}
+async function finish(){P.ready=true;await saveP();shell()}
+function addRow(){return `<div class="row" style="margin-top:10px"><input id="ns" placeholder="e.g. Hair braiding" aria-label="New service"><input id="np" type="number" inputmode="numeric" step="500" placeholder="₦ price" aria-label="Price" style="max-width:110px"><button class="btn cy s" onclick="addSvc()">Add</button></div>`}
+function svc(){const e=$("sv");if(e)e.innerHTML=P.services.length?P.services.map((s,i)=>`<div class="sv"><input value="${esc(s.n)}" onchange="P.services[${i}].n=this.value.trim();saveP()" aria-label="Service name"><input type="number" inputmode="numeric" step="500" value="${s.p}" onchange="P.services[${i}].p=+this.value;saveP()" aria-label="Price"><button class="btn gh" onclick="P.services.splice(${i},1);saveP();svc()" aria-label="Remove">✕</button></div>`).join(""):`<div class="empty">No services yet.</div>`}
+function addSvc(){const n=$("ns").value.trim(),p=+$("np").value;if(!n||!p)return toast("Enter a service name and a price");P.services.push({n,p});$("ns").value=$("np").value="";saveP();svc()}
+/* ---------- app shell ---------- */
+function shell(){const tabs=[["radar","📡","Radar"],["ping","🚀","Ping"],["board","🎯","Board"],["me","🧑","Me"]];
+ $("app").innerHTML=`<div class="top"><b>Nearby</b><span class="tag y" id="lvl"></span></div><div class="scr" id="main"></div><nav>${tabs.map(t=>`<button id="t_${t[0]}" onclick="tab('${t[0]}')"><span>${t[1]}</span>${t[2]}</button>`).join("")}</nav>`;hd();tab("radar");
+ if(sb){sb.channel("o").on("postgres_changes",{event:"*",schema:"public",table:"offers"},refresh).subscribe();setInterval(refresh,10000)}
+ setInterval(beat,60000);setInterval(()=>{if(cur=="radar")loadPV()},20000);refresh()}
+function tab(t){cur=t;document.querySelectorAll("nav button").forEach(b=>b.className=b.id=="t_"+t?"on":"");$("main").innerHTML=pane[t]();$("main").scrollTop=0;
+ if(t=="radar"){lvb();loadPV()}if(t=="ping")$("rv").textContent=$("rad").value;if(t=="board")board();if(t=="me")svc()}
+const pane={
+ radar:()=>`<div class="card"><button id="lv" class="btn big" onclick="goLive()"></button><div class="mu" id="lh" style="margin-top:8px"></div></div><div class="card" style="padding:8px"><svg id="map" class="map" viewBox="0 0 320 320" onclick="mapClick(event)" role="img" aria-label="Radar of nearby live providers"></svg><div class="row" style="margin-top:8px"><span class="mu" id="pcn"></span><button class="btn gh s" onclick="locate()">📍 GPS</button></div></div>${sb?"":`<button class="btn gh" onclick="spawn()">👀 Simulate a nearby request</button>`}`,
+ ping:()=>`<h2>Ping for a service</h2><div class="card"><label for="q">What do you need?</label><input id="q" placeholder="e.g. plumber, wedding photos, logo design" onkeydown="if(event.key=='Enter')ping()"><div class="row"><div><label for="mn">Pay at least (₦)</label><input id="mn" type="number" inputmode="numeric" value="5000" step="500"></div><div><label for="mx">Pay at most (₦)</label><input id="mx" type="number" inputmode="numeric" value="15000" step="500"></div></div><label for="rad">Reach: <span id="rv">8</span> km</label><input id="rad" type="range" min="1" max="10" value="8" oninput="rv.textContent=this.value"><button class="btn co" id="pb" onclick="ping()">Send ping</button></div><p class="mu">Only providers who are live right now and offer a matching service are notified.</p>`,
+ board:()=>`<h2>Your board</h2><div id="fd"></div>`,
+ me:()=>`<div class="card"><div class="row"><div style="font-size:40px;flex:0 0 auto">${esc(P.emoji)}</div><div><input value="${esc(P.name)}" onchange="P.name=this.value.trim()||P.name;saveP()" aria-label="Display name"><div class="mu">${esc(U.email)}</div></div></div><div class="bar" style="margin-top:12px"><i style="width:${P.xp%100}%"></i></div><div class="mu">Level ${lvl()} · ${P.xp%100}/100 XP · ${P.deals} deals</div></div><div class="card"><h2>🧰 My services</h2><div id="sv"></div>${addRow()}</div><div class="card mu">${sb?"Live mode: connected to your Supabase project.":"Demo mode: data stays in this browser. Add Supabase keys in config.js to go live."}</div><button class="btn gh" onclick="signOut()">Sign out</button>`};
+/* ---------- radar + location ---------- */
+function lvb(){const b=$("lv");if(!b)return;b.className="btn big "+(P.live?"on":"co");b.textContent=P.live?"🟢 You are live. Tap to go offline":"🔴 You are offline. Go live";$("lh").textContent=P.live?"People nearby who ping for your services can reach you.":"Offline users never appear in anyone’s search."}
+async function goLive(){P.live=!P.live;if(P.live){try{Notification.requestPermission()}catch(e){}if(!P.services.length)toast("Add a service in Me so people can find you");else if(!sb)setTimeout(()=>{if(P.live&&!O.some(o=>o.provider==U.id))spawn()},6000)}await saveP();lvb();loadPV()}
+function beat(){if(P.live)saveP()}
+function locate(cb){try{navigator.geolocation.getCurrentPosition(p=>{me={lat:p.coords.latitude,lng:p.coords.longitude};A={...me};if(P.live)saveP();toast("Location locked 📍");cb&&cb();if(cur=="radar")loadPV()},()=>{toast("Location blocked. You can tap the radar to place yourself.");cb&&cb()})}catch(e){cb&&cb()}}
+function mapClick(e){const b=$("map").getBoundingClientRect(),x=(e.clientX-b.left)/b.width*320,y=(e.clientY-b.top)/b.height*320;me={lat:A.lat-(y-160)/14/111,lng:A.lng+(x-160)/14/KX()};if(P.live)saveP();draw()}
+async function providers(){if(!sb)return V.map(([id,name,emoji,dx,dy,rating,rcount,s])=>({id,name,emoji,lat:A.lat+dy/111,lng:A.lng+dx/KX(),rating,rcount,services:s.map(([n,p])=>({n,p}))}));
+ const{data}=await sb.from("profiles").select("*").eq("live",true).gt("seen",new Date(Date.now()-3*6e4).toISOString()).neq("id",U.id);return data||[]}
+async function loadPV(){PV=await providers();draw()}
+const pj=p=>[160+(p.lng-A.lng)*KX()*14,160-(p.lat-A.lat)*1554];
+function draw(){const s=$("map");if(!s)return;const m=pj(me),wait=new Set(O.filter(o=>o.client==U.id&&o.status=="pending").map(o=>o.provider));
+ let h=[2,4,6,8,10].map(k=>`<circle cx="160" cy="160" r="${k*14}" fill="none" stroke="#3a2f86" stroke-dasharray="3 5"/>`).join("")+`<g class="sweep"><path d="M160 160L300 160A140 140 0 0 0 260 61Z" fill="#3de0ff" opacity=".12"/></g>`;
+ PV.forEach(v=>{const p=pj(v);h+=`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#ffc933">${wait.has(v.id)?'<animate attributeName="r" values="6;14;6" dur="1s" repeatCount="indefinite"/>':""}</circle><text x="${p[0]+9}" y="${p[1]+4}" font-size="12">${esc(v.emoji)}</text>`});
+ h+=`<circle cx="${m[0]}" cy="${m[1]}" r="8" fill="${P.live?"#5af2b0":"#ff5c7a"}" stroke="#fff" stroke-width="2"/><text x="${m[0]}" y="${m[1]-12}" font-size="10" text-anchor="middle" fill="#fff">You</text>`;s.innerHTML=h;$("pcn").textContent=`${PV.length} live provider${PV.length==1?"":"s"} nearby`}
+/* ---------- offers ---------- */
+async function ping(){const q=$("q").value.trim(),mn=+$("mn").value,mx=+$("mx").value,rad=+$("rad").value;
+ if(!q)return toast("Type what you need first");if(!mn||!mx||mn>mx)return toast("Set a pay range: min must not exceed max");
+ const b=$("pb");b.disabled=true;const ps=await providers(),req=(crypto.randomUUID?crypto.randomUUID():String(Date.now()));
+ const rows=ps.map(v=>({v,s:(v.services||[]).find(s=>hit(q,s.n)),d:hav(me,v)})).filter(h=>h.s&&h.d<=rad).map(h=>({req,client:U.id,provider:h.v.id,cname:P.name,pname:h.v.name,pemoji:h.v.emoji,prating:h.v.rating||0,pcount:h.v.rcount||0,q,min_pay:mn,max_pay:mx,service:h.s.n,price:h.s.p,status:"pending",dist:+h.d.toFixed(1)}));
+ b.disabled=false;if(!rows.length)return toast("No live provider offers that within reach yet. Try a wider reach or different words.");
+ if(sb){const{error}=await sb.from("offers").insert(rows);if(error)return toast("Could not send: "+error.message)}
+ else rows.forEach(r=>{r.id=nid++;O.push(r);setTimeout(()=>{if(r.status!="pending")return;r.status=r.price<=mx?"accepted":r.price<=mx*1.3?"countered":"declined";refresh()},1500+r.dist*600+Math.random()*1500)});
+ xp(5);$("q").value="";toast(`Pinged ${rows.length} live provider${rows.length>1?"s":""} 📡`);tab("board");refresh()}
+async function upd(id,patch){if(sb){const{error}=await sb.from("offers").update(patch).eq("id",id);if(error)toast(error.message)}else Object.assign(O.find(o=>o.id==id),patch);await refresh()}
+async function quote(id){const o=O.find(x=>x.id==id),p=+$("p"+id).value;if(!p||p<=0)return toast("Enter a price");await upd(id,{price:p,status:p<=o.max_pay?"accepted":"countered"});xp(10);
+ if(!sb&&String(o.client)[0]=="c")setTimeout(()=>{const x=O.find(z=>z.id==id);if(!x||!["accepted","countered"].includes(x.status))return;if(x.price<=x.max_pay*1.2){x.status="deal";rw.add(id);dealXP();toast(`${x.cname} accepted ${fmt(x.price)}`)}else{x.status="declined";toast(`${x.cname} passed on your quote`)}refresh()},3000)}
+const decline=id=>upd(id,{status:"declined"});
+async function connect(id){const o=O.find(x=>x.id==id),live=["pending","accepted","countered"];
+ if(sb){await sb.from("offers").update({status:"deal"}).eq("id",id);await sb.from("offers").update({status:"closed"}).eq("req",o.req).neq("id",id).in("status",live)}
+ else O.forEach(x=>{if(x.req==o.req)x.status=x.id==id?"deal":live.includes(x.status)?"closed":x.status});
+ dealXP();toast("Deal locked in! 🚀");await refresh()}
+function spawn(){if(!P.live)return toast("Go live first to receive requests");if(!P.services.length)return toast("Add a service in Me first");
+ const s=P.services[Math.floor(Math.random()*P.services.length)],id=nid++,mx=R5(s.p*(.85+Math.random()*.4));
+ O.push({id,req:"s"+id,client:"c"+id,provider:U.id,cname:["Amaka","Bola","Chinedu","Dele","Efe"][id%5],pname:P.name,q:s.n,service:s.n,min_pay:R5(mx*.6),max_pay:mx,price:s.p,status:"pending",dist:+(.5+Math.random()*5).toFixed(1)});refresh()}
+async function rate(id,pid,st){const t=prompt("Add a short comment (optional)")||"";if(sb){const{error}=await sb.from("reviews").insert({provider:pid,author_name:P.name,stars:st,body:t});if(error)return toast(error.message)}rw.add("r"+id);L.set("nb_rw",[...rw]);toast("Thanks for rating! ⭐");xp(5);board()}
+async function togRev(k,pid){if(!open[k]&&!RV[pid]){if(sb){const{data}=await sb.from("reviews").select("*").eq("provider",pid).order("created",{ascending:false}).limit(3);RV[pid]=data||[]}else RV[pid]=DREV}open[k]=!open[k];board()}
+async function refresh(){if(sb){const{data,error}=await sb.from("offers").select("*").or(`client.eq.${U.id},provider.eq.${U.id}`).order("created",{ascending:false}).limit(100);if(error)return;O=data||[]}
+ O.forEach(o=>{if(o.provider==U.id&&o.status=="pending"&&!seen.has(o.id)){seen.add(o.id);toast(`📡 ${o.cname} needs ${o.service} nearby`)}
+  if(o.client==U.id&&prev[o.id]=="pending"&&o.status!="pending")toast(o.status=="declined"?`${o.pname} declined`:`${o.pemoji} ${o.pname} quoted ${fmt(o.price)}`);
+  if(o.provider==U.id&&o.status=="deal"&&!rw.has(o.id)){rw.add(o.id);L.set("nb_rw",[...rw]);dealXP();toast(`Deal confirmed with ${o.cname} at ${fmt(o.price)} 🎉`)}prev[o.id]=o.status});
+ const n=O.filter(o=>(o.provider==U.id&&o.status=="pending")||(o.client==U.id&&["accepted","countered"].includes(o.status))).length,t=$("t_board");if(t){const i=t.querySelector("i");i&&i.remove();if(n)t.insertAdjacentHTML("beforeend",`<i>${n}</i>`)}
+ if(cur=="board"&&!(document.activeElement&&document.activeElement.tagName=="INPUT"))board();if(cur=="radar")draw()}
+function board(){const f=$("fd");if(!f)return;const inc=O.filter(o=>o.provider==U.id),mine=O.filter(o=>o.client==U.id),g={};mine.forEach(o=>(g[o.req]=g[o.req]||[]).push(o));
+ const ih=inc.map(o=>{let b="";const t=(c,x)=>`<span class="tag ${c}">${x}</span>`;
+  if(o.status=="pending")b=`<div class="row"><input id="p${o.id}" type="number" inputmode="numeric" step="500" value="${o.price}" aria-label="Your quote"><button class="btn cy s" onclick="quote(${o.id})">Send quote</button></div><button class="btn gh" onclick="decline(${o.id})">Decline</button>`;
+  else if(o.status=="accepted"||o.status=="countered")b=t("y",`Quote sent: ${fmt(o.price)}. Waiting for ${esc(o.cname)}`);else if(o.status=="deal")b=t("g",`Deal at ${fmt(o.price)} 🎉`);else b=t("r",o.status=="closed"?"Client chose someone else":"Declined");
+  return `<div class="of"><b>📥 ${esc(o.cname)} needs ${esc(o.service)}</b><div class="mu">${o.dist} km away · pays ${fmt(o.min_pay)} to ${fmt(o.max_pay)} · your rate ${fmt(P.services.find(s=>s.n==o.service)?.p??o.price)}</div><div style="margin-top:8px">${b}</div></div>`}).join("");
+ const oh=Object.values(g).map(a=>{const done=a.find(o=>o.status=="deal"),r=a[0];return `<div class="card"><b>📤 ${esc(r.q)}</b> <span class="mu">${fmt(r.min_pay)} to ${fmt(r.max_pay)}</span><div class="mu">Notified ${a.length} provider${a.length>1?"s":""}</div>${done?`<div style="margin:8px 0"><span class="tag g">Connected with ${esc(done.pname)} at ${fmt(done.price)} 🎉</span></div>${rw.has("r"+done.id)?"":`<div class="stars mu">Rate this job: ${[1,2,3,4,5].map(s=>`<button onclick="rate(${done.id},'${done.provider}',${s})" aria-label="${s} stars">${s}★</button>`).join("")}</div>`}`:""}${a.filter(o=>!done||o.id==done.id).sort((x,y)=>x.dist-y.dist).map(o=>{const k=o.id;
+   if(o.status=="pending")return `<div class="mu" style="margin:6px 0">${esc(o.pemoji)} ${esc(o.pname)} · ${o.dist} km · waiting…</div>`;
+   if(o.status=="declined"||o.status=="closed")return `<div class="mu" style="margin:6px 0;opacity:.6">${esc(o.pemoji)} ${esc(o.pname)} ${o.status=="closed"?"was not chosen":"declined"}</div>`;
+   return `<div class="of"><div class="row"><div><b>${esc(o.pemoji)} ${esc(o.pname)}</b> <span class="tag ${o.status=="countered"?"y":"g"}">${o.status=="countered"?"Above your range":o.status=="deal"?"Connected":"In your range"}</span><div class="mu">${o.pcount?`${stars(o.prating)} ${(+o.prating).toFixed(1)} (${o.pcount})`:"New, no reviews yet"} · ${o.dist} km</div></div><div class="s"><b>${fmt(o.price)}</b></div></div><div class="row" style="margin-top:8px"><button class="btn gh" style="margin:0" onclick="togRev(${k},'${o.provider}')">${open[k]?"Hide":"Read"} reviews</button>${done?"":`<button class="btn" style="margin:0" onclick="connect(${k})">Connect</button>`}</div>${open[k]?(RV[o.provider]||[]).map(r=>`<div class="rev">${stars(r.stars)} <b>${esc(r.author_name)}</b>${r.body?": "+esc(r.body):""}</div>`).join("")||'<div class="mu">No written reviews yet.</div>':""}</div>`}).join("")}</div>`}).join("");
+ f.innerHTML=(ih||oh)?ih+oh:`<div class="empty">Nothing here yet.<br>Send a ping, or go live so people can ping you.</div>`}
+boot();
+</script></body></html>
