@@ -1,86 +1,141 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#14102b">
-<title>Nearby – Ping it. Match it. Done.</title>
+<meta name="theme-color" content="#0e0b22">
+<title>Nearby – Verified help, close by</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--n:#14102b;--p:#1d1740;--p2:#2a2262;--ln:#3a2f86;--co:#ff5c7a;--su:#ffc933;--cy:#3de0ff;--mi:#5af2b0;--tx:#f4f1ff;--mu:#a59fd0}
+:root{--n:#0e0b22;--s:#171335;--s2:#211b4a;--ln:#2e2765;--co:#ff5c7a;--su:#ffc933;--cy:#4fd8ff;--mi:#4be3a4;--tx:#f5f3ff;--mu:#a7a2cf}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;margin:0;background:#0b0820}
-body{color:var(--tx);font:16px/1.45 "Nunito","Trebuchet MS",system-ui,sans-serif}
-#app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;background:radial-gradient(500px 300px at 90% -5%,#3a2a8c66,transparent),var(--n);overflow:hidden;border-inline:1px solid #241c5a}
-.scr{flex:1;overflow-y:auto;padding:16px;padding-top:calc(16px + env(safe-area-inset-top));padding-bottom:calc(16px + env(safe-area-inset-bottom))}
-.top{display:flex;align-items:center;gap:10px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid var(--ln);background:var(--p)}
-.top b{flex:1;font-size:18px}.top+.scr{padding-top:16px}
-nav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--p);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
-nav button{background:none;border:0;color:var(--mu);font:inherit;font-size:12px;padding:8px 0 7px;cursor:pointer;position:relative}
-nav button span{display:block;font-size:22px}nav button.on{color:var(--su)}
-nav i{position:absolute;top:4px;left:55%;background:var(--co);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:9px;padding:0 5px}
-h1{font-size:34px;margin:6px 0}h2{font-size:20px;margin:0 0 10px}
-.hero{text-align:center;padding:40px 8px 24px}.hero p{color:var(--mu);max-width:300px;margin:6px auto 0}
-label{display:block;font-size:13px;color:var(--mu);margin:12px 0 4px}
-input,select{width:100%;padding:12px;border-radius:12px;border:2px solid var(--ln);background:#0f0b26;color:var(--tx);font:inherit}
-input:focus-visible,button:focus-visible{outline:3px solid var(--cy);outline-offset:2px}
-input[type=checkbox]{width:auto;margin-right:8px}.ck{display:flex;align-items:center;font-size:14px}
-.btn{display:block;width:100%;border:0;border-radius:14px;padding:13px 14px;margin-top:12px;font:inherit;font-weight:700;color:#1a1033;background:var(--su);box-shadow:0 4px 0 #b08700;cursor:pointer}
-.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b08700}.btn:disabled{opacity:.6}
-.btn.co{background:var(--co);color:#fff;box-shadow:0 4px 0 #a02a45}.btn.cy{background:var(--cy);box-shadow:0 4px 0 #1f90a8}
-.btn.gh{background:var(--p2);color:var(--tx);box-shadow:0 4px 0 #130e33}.btn.on{background:var(--mi);box-shadow:0 4px 0 #1f9c6c}
-.btn.s{width:auto;margin:0;padding:10px 14px}.btn.big{font-size:18px;padding:16px;margin:0}
-.lnk{background:none;border:0;color:var(--cy);font:inherit;margin-top:14px;width:100%;cursor:pointer}
+html,body{height:100%;margin:0;background:#080616}
+body{color:var(--tx);font:500 16px/1.45 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;background:radial-gradient(520px 320px at 100% -8%,#3a2a8c55,transparent),var(--n);overflow:hidden;border-inline:1px solid #1d1850}
+.scr{flex:1;overflow-y:auto;padding:18px 16px calc(18px + env(safe-area-inset-bottom));padding-top:calc(18px + env(safe-area-inset-top))}
+.top{display:flex;align-items:center;gap:10px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));background:var(--s);border-bottom:1px solid var(--ln)}
+.top b{flex:1;font-size:18px;font-weight:800;letter-spacing:-.2px}.top+.scr{padding-top:16px}
+.top button{background:none;border:0;padding:0;cursor:pointer}
+nav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--s);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+nav button{background:none;border:0;color:var(--mu);font:inherit;font-size:12px;font-weight:700;padding:9px 0 8px;cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button.on{color:var(--su)}nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+nav i{position:absolute;top:3px;left:54%;background:var(--co);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:9px;padding:0 5px;line-height:18px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.8px;margin:8px 0}h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin:0 0 10px}h3{font-size:16px;margin:0 0 6px}
+.hero{text-align:center;padding:36px 8px 22px}.hero p{color:var(--mu);max-width:300px;margin:6px auto 0}
+label{display:block;font-size:13px;font-weight:700;color:var(--mu);margin:14px 0 5px}
+input,select{width:100%;height:50px;padding:0 14px;border-radius:14px;border:1.5px solid var(--ln);background:#0c0920;color:var(--tx);font:inherit}
+input:focus{border-color:var(--cy);outline:0}button:focus-visible,label.btn:focus-within{outline:3px solid var(--cy);outline-offset:2px}
+input[type=checkbox]{width:20px;height:20px;margin:2px 10px 0 0;flex:none}.ck{display:flex;align-items:flex-start;font-size:14px;color:var(--mu);margin:14px 0 0;font-weight:500}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border:0;border-radius:14px;margin-top:12px;font:inherit;font-weight:800;color:#fff;background:var(--co);cursor:pointer;transition:transform .1s,filter .1s}
+.btn:active{transform:scale(.98);filter:brightness(.92)}.btn:disabled{opacity:.55}
+.btn.gh{background:var(--s2);color:var(--tx)}.btn.cy{background:var(--cy);color:#06222b}.btn.mi{background:var(--mi);color:#06281a}.btn.ln{background:transparent;border:1.5px solid var(--ln);color:var(--tx)}
+.btn.s{width:auto;margin:0;padding:0 18px;height:44px}.btn.sm{height:42px;margin:0;font-size:14px}
+.lnk{background:none;border:0;color:var(--cy);font:inherit;font-weight:700;margin-top:14px;width:100%;cursor:pointer}
 .err{color:var(--co);font-size:14px;min-height:20px;margin-top:8px}
-.card{background:var(--p);border:1px solid var(--ln);border-radius:18px;padding:14px;margin-bottom:12px}
-.of{background:var(--p2);border-radius:14px;padding:12px;margin:10px 0}
-.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.row .s{flex:0 0 auto}
-.mu{color:var(--mu);font-size:13px}.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;background:var(--p2)}
-.tag.g{background:#12503c;color:var(--mi)}.tag.y{background:#4d3b05;color:var(--su)}.tag.r{background:#55162a;color:var(--co)}
-.rev{border-left:3px solid var(--su);padding:1px 8px;margin:6px 0;font-size:14px}
-.sv{display:grid;grid-template-columns:1fr 96px 44px;gap:6px;margin:6px 0}.sv .btn{margin:0;padding:8px}
-.em{display:flex;gap:8px;flex-wrap:wrap}.em button{font-size:26px;background:var(--p2);border:2px solid transparent;border-radius:14px;padding:6px 10px;cursor:pointer}.em button.on{border-color:var(--su)}
-.dots{display:flex;gap:6px;margin-bottom:14px}.dots i{flex:1;height:5px;border-radius:3px;background:var(--ln)}.dots i.on{background:var(--su)}
-.bar{height:10px;background:#0d0a22;border-radius:6px;overflow:hidden;border:1px solid var(--ln)}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--co),var(--su))}
-.stars button{background:none;border:0;font-size:24px;color:var(--su);cursor:pointer;padding:2px}
-.empty{color:var(--mu);text-align:center;padding:24px 8px}
-svg.map{width:100%;display:block;border-radius:14px;background:#0f0b26;cursor:crosshair}
+.card{background:var(--s);border:1px solid var(--ln);border-radius:20px;padding:16px;margin-bottom:12px}
+.card.warn{border-color:#6b5513;background:#2a2108}
+.of{background:var(--s2);border-radius:16px;padding:12px;margin:10px 0}
+.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.row .s,.row .f{flex:0 0 auto}
+.mu{color:var(--mu);font-size:13px;font-weight:500}.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--s2);color:var(--mu)}
+.tag.g{background:#0f3d2e;color:var(--mi)}.tag.y{background:#46370a;color:var(--su)}.tag.r{background:#4d1626;color:var(--co)}
+.rev{border-left:3px solid var(--su);padding:1px 10px;margin:8px 0;font-size:14px}
+.sv{display:grid;grid-template-columns:1fr 96px 46px;gap:6px;margin:6px 0}.sv input{height:46px}.sv .btn{height:46px;margin:0}
+.dots{display:flex;gap:6px;margin-bottom:16px}.dots i{flex:1;height:5px;border-radius:3px;background:var(--ln)}.dots i.on{background:var(--su)}
+.bar{height:8px;background:#0c0920;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--co),var(--su))}
+.stars button{background:none;border:0;font:inherit;font-weight:700;color:var(--su);cursor:pointer;padding:6px 4px}
+.empty{color:var(--mu);text-align:center;padding:26px 8px}
+.av{position:relative;width:var(--z);height:var(--z);border-radius:50%;background:var(--s2);display:grid;place-items:center;flex:none;font-size:calc(var(--z)*.5)}
+.av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.av .vk{position:absolute;right:-2px;bottom:-2px;width:36%;height:36%;min-width:15px;min-height:15px;border-radius:50%;background:var(--mi);color:#06281a;font:800 10px/1 sans-serif;display:grid;place-items:center;border:2px solid var(--s)}
+svg.map{width:100%;display:block;border-radius:16px;background:#0c0920;cursor:crosshair}
 .sweep{transform-origin:160px 160px;animation:sw 4s linear infinite}@keyframes sw{to{transform:rotate(360deg)}}
-#toast{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top));display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:9}
-#toast div{background:var(--su);color:#1a1033;padding:10px 16px;border-radius:14px;font-weight:700;box-shadow:0 4px 12px #0008;animation:in .3s;max-width:100%}
+#toast{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top));display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:50}
+#toast div{background:#fff;color:#1a1033;padding:11px 16px;border-radius:14px;font-weight:700;font-size:14px;box-shadow:0 8px 24px #0009;animation:in .3s;max-width:100%}
 @keyframes in{from{transform:translateY(-10px);opacity:0}}
-.pc{position:fixed;left:50%;top:40%;font-size:24px;pointer-events:none;animation:pop 1.2s ease-out forwards;z-index:9}
+.pc{position:fixed;left:50%;top:40%;font-size:24px;pointer-events:none;animation:pop 1.2s ease-out forwards;z-index:50}
 @keyframes pop{to{transform:translate(var(--x),var(--y)) rotate(360deg);opacity:0}}
-@media(prefers-reduced-motion:reduce){.sweep,.pc,#toast div{animation:none}}
+.sh{position:fixed;inset:0;background:#000a;display:flex;align-items:flex-end;justify-content:center;z-index:30}
+.sp{position:relative;width:100%;max-width:480px;background:var(--s);border-radius:24px 24px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));max-height:90dvh;overflow:auto;animation:up .25s}
+@keyframes up{from{transform:translateY(40px);opacity:0}}.x{position:absolute;right:12px;top:12px;background:var(--s2);border:0;color:var(--tx);width:34px;height:34px;border-radius:50%;cursor:pointer}
+#ov{position:fixed;inset:0;background:#05030f;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
+#ov video{width:min(78vw,340px);aspect-ratio:1;object-fit:cover;border-radius:50%;transform:scaleX(-1);border:4px solid var(--cy);background:#111}
+#ov .ins{font-size:20px;font-weight:800;text-align:center;min-height:30px}
+#ov .sd{display:flex;gap:8px}#ov .sd i{width:34px;height:6px;border-radius:3px;background:var(--ln)}#ov .sd i.on{background:var(--mi)}
+@media(prefers-reduced-motion:reduce){.sweep,.pc,#toast div,.sp{animation:none}}
 </style>
+</head><body><div id="app"></div><div id="toast"></div>
 <script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-</head><body><div id="app"></div><div id="toast"></div>
 <script>
 const C=window.NEARBY_CONFIG||{},sb=(C.SUPABASE_URL&&window.supabase)?supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY):null;
 const $=id=>document.getElementById(id),fmt=n=>"₦"+Math.round(n).toLocaleString("en-NG"),R5=n=>Math.round(n/500)*500;
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const L={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let U,P,O=[],PV=[],me={lat:5.516,lng:5.75},A={...me},cur="radar",seen=new Set(),prev={},open={},RV={},nid=1,rw=new Set(L.get("nb_rw",[])),T0;
+let U,P,O=[],PV=[],PH={},PD=null,ob=0,me={lat:5.516,lng:5.75},A={...me},cur="radar",seen=new Set(),prev={},open={},RV={},nid=1,rw=new Set(L.get("nb_rw",[]));
+const FACE_JS="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.js",FACE_M="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/model/",TH=.5;
 const KX=()=>111.32*Math.cos(A.lat*Math.PI/180);
 function hav(a,b){const r=Math.PI/180,x=Math.sin((b.lat-a.lat)*r/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin((b.lng-a.lng)*r/2)**2;return 12742*Math.asin(Math.sqrt(x))}
 const wd=s=>String(s).toLowerCase().split(/[^a-z]+/).filter(w=>w.length>2),hit=(q,s)=>wd(q).some(a=>wd(s).some(b=>a.slice(0,4)==b.slice(0,4)));
-const stars=n=>"★".repeat(Math.round(n))+"☆".repeat(5-Math.round(n));
+const stars=n=>"★".repeat(Math.round(n))+"☆".repeat(5-Math.round(n)),dist=(a,b)=>Math.sqrt(a.reduce((s,x,i)=>s+(x-b[i])**2,0));
+const av=(p,e,z=44,v)=>`<span class="av" style="--z:${z}px">${p?`<img src="${p}" alt="">`:`<b>${esc(e||"🙂")}</b>`}${v?'<i class="vk" title="Face verified">✓</i>':""}</span>`;
+const IC={radar:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/>',ping:'<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>',board:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',me:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
 const V=[["n1","Emeka Pipes","🔧",.8,.5,4.6,212,[["Plumbing",8000],["Water heater repair",12000]]],["n2","Sola Fixit","🛠️",-1.9,1.2,4.4,96,[["Plumbing",6500],["Carpentry",9000]]],["n3","Brightspark","⚡",1.5,-1.1,4.9,340,[["Electrical wiring",12000],["Generator repair",14000]]],["n4","Mama Neat","🧽",.3,-2.4,4.8,180,[["House cleaning",7000],["Laundry",4000]]],["n5","AutoDoc","🚗",-.9,-.4,4.5,128,[["Car mechanic",15000],["Car wash",3000]]],["n6","Pixel Tola","🎨",2,1.6,4.7,87,[["Graphic design",12000],["Logo design",10000],["Video editing",20000]]],["n7","Snap Dayo","📸",3.4,-1.5,4.6,63,[["Photography",30000],["Videography",45000]]]];
 const DREV=[{stars:5,author_name:"Tunde",body:"Arrived quickly, fair price."},{stars:4,author_name:"Ada",body:"Good work, a little late."}];
 const LOGO=`<svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true"><rect width="84" height="84" rx="24" fill="#ff5c7a"/><path d="M42 16c-10 0-18 8-18 18 0 13 18 34 18 34s18-21 18-34c0-10-8-18-18-18z" fill="#fff"/><circle cx="42" cy="34" r="7" fill="#ffc933"/></svg>`;
-function toast(m){const d=document.createElement("div");d.textContent=m;$("toast").append(d);setTimeout(()=>d.remove(),3500);try{if(document.hidden&&Notification.permission=="granted")new Notification("Nearby",{body:m})}catch(e){}}
-function boom(){for(let i=0;i<24;i++){const s=document.createElement("span");s.className="pc";s.textContent=["🎉","✨","🪙","⭐"][i%4];s.style.setProperty("--x",Math.random()*500-250+"px");s.style.setProperty("--y",Math.random()*400-200+"px");document.body.append(s);setTimeout(()=>s.remove(),1300)}}
+function toast(m){const d=document.createElement("div");d.textContent=m;$("toast").append(d);setTimeout(()=>d.remove(),3800);try{if(document.hidden&&Notification.permission=="granted")new Notification("Nearby",{body:m})}catch(e){}}
+function boom(){for(let i=0;i<22;i++){const s=document.createElement("span");s.className="pc";s.textContent=["🎉","✨","⭐","🪙"][i%4];s.style.setProperty("--x",Math.random()*500-250+"px");s.style.setProperty("--y",Math.random()*400-200+"px");document.body.append(s);setTimeout(()=>s.remove(),1300)}}
 const lvl=()=>1+Math.floor(P.xp/100);
-function xp(n){const l=lvl();P.xp+=n;if(lvl()>l)toast(`Level up! You are now level ${lvl()}`);saveP();hd()}
+function xp(n){const l=lvl();P.xp+=n;if(lvl()>l)toast(`Level up! You are now level ${lvl()}`);saveP()}
 function dealXP(){P.deals++;xp(50);boom()}
-function hd(){const e=$("lvl");if(e)e.textContent=`Lv ${lvl()} · ${P.xp} XP`}
-async function saveP(){P.seen=new Date().toISOString();if(P.live){P.lat=me.lat;P.lng=me.lng}if(sb){const{id,name,emoji,services,live,lat,lng,xp,deals,ready,seen}=P;const{error}=await sb.from("profiles").upsert({id,name,emoji,services,live,lat,lng,xp,deals,ready,seen});if(error)toast("Save failed: "+error.message)}else L.set("nb_p_"+U.id,P)}
+async function saveP(){P.seen=new Date().toISOString();if(P.live){P.lat=me.lat;P.lng=me.lng}if(sb){const{id,name,emoji,services,live,lat,lng,xp,deals,ready,seen,photo,verified,verified_at}=P;const{error}=await sb.from("profiles").upsert({id,name,emoji,services,live,lat,lng,xp,deals,ready,seen,photo,verified,verified_at});if(error)toast("Save failed: "+error.message+" (did you run face.sql?)")}else L.set("nb_p_"+U.id,P)}
+/* ---------- face tools ---------- */
+let FA;function loadFace(){if(FA)return FA;FA=(async()=>{await new Promise((ok,no)=>{if(window.faceapi)return ok();const s=document.createElement("script");s.src=FACE_JS;s.onload=ok;s.onerror=()=>no(new Error("Could not load the face tools. Check your connection."));document.head.append(s)});
+ const f=window.faceapi;await Promise.all([f.nets.tinyFaceDetector.loadFromUri(FACE_M),f.nets.faceLandmark68TinyNet.loadFromUri(FACE_M),f.nets.faceRecognitionNet.loadFromUri(FACE_M)]);return f})();FA.catch(()=>FA=null);return FA}
+const TO=s=>new faceapi.TinyFaceDetectorOptions({inputSize:s,scoreThreshold:.5});
+const pt=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),eye=(m,i)=>(pt(m[i+1],m[i+5])+pt(m[i+2],m[i+4]))/(2*pt(m[i],m[i+3]));
+function pickPhoto(file){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=c.height=256;const s=Math.min(im.width,im.height);c.getContext("2d").drawImage(im,(im.width-s)/2,(im.height-s)*.3,s,s,0,0,256,256);ok(c.toDataURL("image/jpeg",.8))};im.onerror=()=>no(new Error("That file is not a readable image."));im.src=r.result};r.readAsDataURL(file)})}
+async function descOf(url){const fa=await loadFace(),im=new Image();im.src=url;await im.decode();const r=await fa.detectSingleFace(im,TO(320)).withFaceLandmarks(true).withFaceDescriptor();return r?Array.from(r.descriptor):null}
+async function getRef(){if(sb){const{data}=await sb.from("face_refs").select("descriptor").eq("uid",U.id).maybeSingle();return data?.descriptor||null}return L.get("nb_face_"+U.id,null)}
+async function setRef(d){if(sb){const{error}=await sb.from("face_refs").upsert({uid:U.id,descriptor:d,updated:new Date().toISOString()});if(error)throw error}else L.set("nb_face_"+U.id,d)}
+const rr=()=>ob?onboard(ob):tab(cur);
+async function onPhoto(inp){const f=inp.files[0];inp.value="";if(!f)return;const m=$("pm");m&&(m.textContent="Checking your photo…");
+ try{const url=await pickPhoto(f),fa=await loadFace(),im=new Image();im.src=url;await im.decode();const ds=await fa.detectAllFaces(im,TO(320)).withFaceLandmarks(true).withFaceDescriptors();
+  if(ds.length!=1){m&&(m.textContent=ds.length?"More than one face found. Use a photo of just you.":"No face found. Use a clear, well-lit photo of your face.");return}
+  const d=Array.from(ds[0].descriptor),ref=await getRef();if(ref&&dist(ref,d)>TH){m&&(m.textContent="This photo doesn’t match your verified face, so it can’t be used.");return}
+  P.photo=url;PD=d;if(!ref)P.verified=false;await saveP();rr()}catch(e){m&&(m.textContent=e.message||"Could not read that photo.")}}
+let stopScan=()=>{};
+async function scan(){const o=document.createElement("div");o.id="ov";o.innerHTML=`<video id="vd" playsinline muted autoplay></video><div class="ins" id="ins">Loading face tools…</div><div class="sd" id="sd"></div><button class="btn ln s" onclick="stopScan()">Cancel</button>`;document.body.append(o);
+ let stream,live=true;const end=r=>{live=false;stream&&stream.getTracks().forEach(t=>t.stop());$("ov")?.remove();return r},say=s=>{const i=$("ins");i&&(i.textContent=s)};stopScan=()=>{live=false;window.__r&&window.__r(null)};
+ let fa;try{fa=await loadFace()}catch(e){toast(e.message);return end(null)}
+ try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:{ideal:480},height:{ideal:480}},audio:false});const v=$("vd");v.srcObject=stream;await v.play()}catch(e){toast("Camera access is needed for the face scan. Allow it in your browser settings.");return end(null)}
+ const steps=["blink","left","right"].sort(()=>Math.random()-.5).slice(0,2),txt={blink:"Blink slowly",left:"Turn your head left",right:"Turn your head right"};let ph=0,base=0,bs=[],closed=0,hold=0,t0=Date.now();
+ const dots=()=>{const d=$("sd");d&&(d.innerHTML=[0,1,2].map(i=>`<i class="${i<ph?"on":""}"></i>`).join(""))};dots();
+ return new Promise(res=>{window.__r=r=>res(end(r));
+  const tick=async()=>{if(!live)return res(end(null));if(Date.now()-t0>30000){toast("Time ran out. Try again.");return res(end(null))}
+   let r;try{r=await fa.detectSingleFace($("vd"),TO(224)).withFaceLandmarks(true)}catch(e){toast("Face detection failed. Try again.");return res(end(null))}
+   if(!r){say("Center your face in the circle");hold=0;return setTimeout(tick,100)}
+   const m=r.landmarks.positions,yaw=(m[30].x-m[0].x)/(m[16].x-m[0].x),ear=(eye(m,36)+eye(m,42))/2,fr=yaw>.42&&yaw<.58;
+   if(ph==0){say("Look straight at the camera");if(fr){hold++;bs.push(ear);if(hold>=8){base=bs.reduce((a,b)=>a+b)/bs.length;ph=1;dots()}}else hold=0}
+   else if(ph<=steps.length){const s=steps[ph-1];say(txt[s]);let ok=false;if(s=="blink"){if(ear<base*.72)closed=1;else if(closed&&ear>base*.88)ok=true}if(s=="left")ok=yaw>.62;if(s=="right")ok=yaw<.38;if(ok){ph++;closed=0;hold=0;dots()}}
+   else{say("Hold still…");if(fr){hold++;if(hold>=5){const f=await fa.detectSingleFace($("vd"),TO(224)).withFaceLandmarks(true).withFaceDescriptor();if(f)return res(end(Array.from(f.descriptor)))}}else hold=0}
+   setTimeout(tick,100)};tick()})}
+async function enroll(){if(!P.photo){toast("Add your photo first");return false}
+ let pd=PD;if(!pd){try{pd=await descOf(P.photo)}catch(e){toast(e.message);return false}}if(!pd){toast("We couldn’t read your photo. Upload a clearer one.");return false}
+ const d=await scan();if(!d)return false;if(dist(d,pd)>TH){toast("Your live scan doesn’t match your photo. Use a recent photo of yourself.");return false}
+ try{await setRef(d)}catch(e){toast("Could not save: "+(e.message||e));return false}P.verified=true;P.verified_at=new Date().toISOString();await saveP();toast("Face verified ✓");return true}
+async function doEnroll(){if(!$("cs")?.checked)return toast("Please tick the consent box first");if(await enroll()){closeSheet();ob?finish():tab(cur)}}
+async function wipeFace(){if(!confirm("Delete your face data? You will need to verify again to go live or send pings."))return;if(sb)await sb.from("face_refs").delete().eq("uid",U.id);else L.set("nb_face_"+U.id,null);P.verified=false;P.live=false;PD=null;await saveP();toast("Face data deleted");tab(cur)}
+const vHTML=()=>!P.photo?`<h2>Verify it’s you</h2><p class="mu">Add a clear photo of your face first. We’ll match it against a live scan.</p>${photoBox()}`:`<h2>Verify it’s you</h2><div style="text-align:center;margin:8px 0">${av(P.photo,"🙂",84)}</div><p class="mu">You will follow two quick on-screen prompts, like blinking or turning your head. We then check that the live scan matches your photo.</p><label class="ck"><input type="checkbox" id="cs">I agree that Nearby may process my face to verify my identity. Only a numeric face template is kept, never the scan itself, and I can delete it any time in Me.</label><button class="btn" onclick="doEnroll()">Start live scan</button>`;
+function sheet(h){closeSheet();const d=document.createElement("div");d.id="sh";d.className="sh";d.innerHTML=`<div class="sp"><button class="x" onclick="closeSheet()" aria-label="Close">✕</button>${h}</div>`;d.onclick=e=>{if(e.target==d)closeSheet()};document.body.append(d)}
+const closeSheet=()=>$("sh")?.remove(),verifySheet=()=>sheet(vHTML());
+const photoBox=()=>`<div style="text-align:center">${av(P.photo,P.emoji,96,P.verified)}<div class="row" style="margin-top:14px"><label class="btn gh sm" style="margin:0">Take photo<input type="file" accept="image/*" capture="user" hidden onchange="onPhoto(this)"></label><label class="btn gh sm" style="margin:0">Upload photo<input type="file" accept="image/*" hidden onchange="onPhoto(this)"></label></div><div class="mu" id="pm" style="margin-top:8px">Clear, well-lit, just your face.</div></div>`;
 /* ---------- auth ---------- */
 const fld=(id,l,t,ac)=>`<label for="${id}">${l}</label><input id="${id}" type="${t}" autocomplete="${ac}">`;
 function authView(m,x){const ft=`<div class="mu" style="text-align:center;margin-top:22px">${sb?"Live mode":"Demo mode: accounts stay in this browser"}</div>`;
- const h={welcome:`<div class="hero">${LOGO}<h1>Nearby</h1><p>Find trusted help around you, or get paid for what you do. Ping it, match it, done.</p></div><button class="btn co" onclick="authView('up')">Create account</button><button class="btn gh" onclick="authView('in')">I already have an account</button>`,
- up:`<h2>Create your account</h2>${fld("name","Your name","text","name")}${fld("em","Email","email","email")}${fld("pw","Password (6+ characters)","password","new-password")}<label class="ck" style="margin-top:14px"><input type="checkbox" id="tc">I agree to the terms and privacy policy</label><div id="er" class="err"></div><button class="btn co" id="go" onclick="signUp()">Sign up</button><button class="lnk" onclick="authView('in')">Have an account? Sign in</button>`,
- in:`<h2>Welcome back</h2>${fld("em","Email","email","email")}${fld("pw","Password","password","current-password")}<div id="er" class="err"></div><button class="btn co" id="go" onclick="signIn()">Sign in</button><button class="lnk" onclick="authView('reset')">Forgot password?</button><button class="lnk" onclick="authView('up')">New here? Create an account</button>`,
- reset:`<h2>Reset your password</h2><p class="mu">We will email you a link to set a new one.</p>${fld("em","Email","email","email")}<div id="er" class="err"></div><button class="btn co" id="go" onclick="resetPw()">Send reset link</button><button class="lnk" onclick="authView('in')">Back to sign in</button>`,
- verify:`<div class="hero">${LOGO}<h2 style="margin-top:12px">Check your email</h2><p>We sent a confirmation link to <b>${esc(x)}</b>. Tap it, then come back and sign in.</p></div><button class="btn co" onclick="authView('in')">Go to sign in</button>`}[m];
+ const h={welcome:`<div class="hero">${LOGO}<h1>Nearby</h1><p>Verified help, close by. Every provider and client is face-checked before they appear.</p></div><button class="btn" onclick="authView('up')">Create account</button><button class="btn gh" onclick="authView('in')">I already have an account</button>`,
+ up:`<h2>Create your account</h2>${fld("name","Your name","text","name")}${fld("em","Email","email","email")}${fld("pw","Password (6+ characters)","password","new-password")}<label class="ck"><input type="checkbox" id="tc">I agree to the terms and privacy policy</label><div id="er" class="err"></div><button class="btn" id="go" onclick="signUp()">Sign up</button><button class="lnk" onclick="authView('in')">Have an account? Sign in</button>`,
+ in:`<h2>Welcome back</h2>${fld("em","Email","email","email")}${fld("pw","Password","password","current-password")}<div id="er" class="err"></div><button class="btn" id="go" onclick="signIn()">Sign in</button><button class="lnk" onclick="authView('reset')">Forgot password?</button><button class="lnk" onclick="authView('up')">New here? Create an account</button>`,
+ reset:`<h2>Reset your password</h2><p class="mu">We will email you a link to set a new one.</p>${fld("em","Email","email","email")}<div id="er" class="err"></div><button class="btn" id="go" onclick="resetPw()">Send reset link</button><button class="lnk" onclick="authView('in')">Back to sign in</button>`,
+ verify:`<div class="hero">${LOGO}<h2 style="margin-top:12px">Check your email</h2><p>We sent a confirmation link to <b>${esc(x)}</b>. Tap it, then come back and sign in.</p></div><button class="btn" onclick="authView('in')">Go to sign in</button>`}[m];
  $("app").innerHTML=`<div class="scr">${m!="welcome"&&m!="verify"?`<button class="lnk" style="text-align:left;margin:0 0 10px" onclick="authView('welcome')">← Back</button>`:""}${h}${ft}</div>`}
 const err=m=>{$("er").textContent=m},busy=b=>{const g=$("go");if(g)g.disabled=!!b};
 async function signUp(){const name=$("name").value.trim(),email=$("em").value.trim().toLowerCase(),pw=$("pw").value;
@@ -91,89 +146,92 @@ async function signUp(){const name=$("name").value.trim(),email=$("em").value.tr
 async function signIn(){const email=$("em").value.trim().toLowerCase(),pw=$("pw").value;if(!email||!pw)return err("Enter your email and password.");busy(1);
  if(sb){const{data,error}=await sb.auth.signInWithPassword({email,password:pw});busy(0);if(error)return err(error.message);const u=data.user;U={id:u.id,email,name:u.user_metadata?.name};return enter()}
  const u=L.get("nb_users",{})[email];busy(0);if(!u||u.pw!=btoa(pw))return err("Wrong email or password.");L.set("nb_sess",email);U={id:email,email,name:u.name};enter()}
-async function resetPw(){const email=$("em").value.trim();if(!email)return err("Enter your email.");if(!sb)return err("Password reset works in live mode only.");
- const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin});err(error?error.message:"Reset link sent. Check your email.")}
+async function resetPw(){const email=$("em").value.trim();if(!email)return err("Enter your email.");if(!sb)return err("Password reset works in live mode only.");const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin});err(error?error.message:"Reset link sent. Check your email.")}
 async function signOut(){if(P.live){P.live=false;await saveP()}if(sb)await sb.auth.signOut();else L.set("nb_sess",null);location.reload()}
 async function boot(){if(sb){sb.auth.onAuthStateChange(async e=>{if(e=="PASSWORD_RECOVERY"){const p=prompt("Enter a new password (6+ characters)");if(p&&p.length>=6){const{error}=await sb.auth.updateUser({password:p});toast(error?error.message:"Password updated")}}});
   const{data}=await sb.auth.getSession(),u=data.session?.user;U=u?{id:u.id,email:u.email,name:u.user_metadata?.name}:null}
- else{const e=L.get("nb_sess"),u=e&&L.get("nb_users",{})[e];U=u?{id:e,email:e,name:u.name}:null}
- U?enter():authView("welcome")}
-async function enter(){if(sb){const{data,error}=await sb.from("profiles").select("*").eq("id",U.id).maybeSingle();if(error)toast("Database error: "+error.message+". Did you run schema.sql?");P=data}else P=L.get("nb_p_"+U.id,null);
- const was=P&&P.live;P=P||{id:U.id,name:U.name||"",emoji:"🧑‍🚀",services:[],live:false,xp:0,deals:0,ready:false};P.services=P.services||[];P.live=false;if(was)saveP();
+ else{const e=L.get("nb_sess"),u=e&&L.get("nb_users",{})[e];U=u?{id:e,email:e,name:u.name}:null}U?enter():authView("welcome")}
+async function enter(){if(sb){const{data,error}=await sb.from("profiles").select("*").eq("id",U.id).maybeSingle();if(error)toast("Database error: "+error.message+". Did you run schema.sql and face.sql?");P=data}else P=L.get("nb_p_"+U.id,null);
+ const was=P&&P.live;P=P||{id:U.id,name:U.name||"",emoji:"🙂",services:[],live:false,xp:0,deals:0,ready:false,photo:null,verified:false};P.services=P.services||[];P.live=false;P.verified=!!P.verified;if(was)saveP();
  if(P.lat){me={lat:P.lat,lng:P.lng};A={...me}}P.ready?shell():onboard(1)}
 /* ---------- onboarding ---------- */
-function onboard(s){const dots=`<div class="dots">${[1,2,3].map(i=>`<i class="${i<=s?"on":""}"></i>`).join("")}</div>`;let b="";
- if(s==1)b=`<h2>Pick your look</h2><label for="pn">Display name</label><input id="pn" value="${esc(P.name)}"><label>Avatar</label><div class="em">${["🧑‍🚀","🦊","🐯","🦉","🚀","🎯","🔥","🌟"].map(e=>`<button class="${e==P.emoji?"on":""}" onclick="P.emoji='${e}';onboard(1)" aria-label="Avatar ${e}">${e}</button>`).join("")}</div><button class="btn co" onclick="P.name=$('pn').value.trim()||P.name;onboard(2)">Continue</button>`;
- if(s==2)b=`<h2>What do you offer?</h2><p class="mu">Add the services people can find you for. You can change these any time, or skip if you only want to hire.</p><div id="sv"></div>${addRow()}<button class="btn co" onclick="onboard(3)">Continue</button>`;
- if(s==3)b=`<h2>Where are you?</h2><p class="mu">Nearby matches you with people close by. Your location is only shared while you are live.</p><button class="btn cy" onclick="locate(()=>finish())">📍 Use my location</button><button class="btn gh" onclick="finish()">Skip for now</button>`;
+function onboard(s){ob=s;const dots=`<div class="dots">${[1,2,3].map(i=>`<i class="${i<=s?"on":""}"></i>`).join("")}</div>`;let b="";
+ if(s==1)b=`<h2>Add your photo</h2><p class="mu">This is how other people see you. It must be your real face, because you’ll verify it with a live scan.</p>${photoBox()}<label for="pn">Display name</label><input id="pn" value="${esc(P.name)}"><button class="btn" onclick="if(!P.photo)return toast('Add your photo to continue');P.name=$('pn').value.trim()||P.name;saveP();onboard(2)">Continue</button>`;
+ if(s==2)b=`<h2>What do you offer?</h2><p class="mu">Add the services people can find you for. Skip this if you only want to hire.</p><div id="sv"></div>${addRow()}<button class="btn" onclick="onboard(3)">Continue</button>`;
+ if(s==3)b=vHTML()+`<button class="lnk" onclick="finish()">Do this later</button>`;
  $("app").innerHTML=`<div class="scr">${dots}${b}</div>`;if(s==2)svc()}
-async function finish(){P.ready=true;await saveP();shell()}
+async function finish(){ob=0;P.ready=true;await saveP();shell()}
 function addRow(){return `<div class="row" style="margin-top:10px"><input id="ns" placeholder="e.g. Hair braiding" aria-label="New service"><input id="np" type="number" inputmode="numeric" step="500" placeholder="₦ price" aria-label="Price" style="max-width:110px"><button class="btn cy s" onclick="addSvc()">Add</button></div>`}
 function svc(){const e=$("sv");if(e)e.innerHTML=P.services.length?P.services.map((s,i)=>`<div class="sv"><input value="${esc(s.n)}" onchange="P.services[${i}].n=this.value.trim();saveP()" aria-label="Service name"><input type="number" inputmode="numeric" step="500" value="${s.p}" onchange="P.services[${i}].p=+this.value;saveP()" aria-label="Price"><button class="btn gh" onclick="P.services.splice(${i},1);saveP();svc()" aria-label="Remove">✕</button></div>`).join(""):`<div class="empty">No services yet.</div>`}
 function addSvc(){const n=$("ns").value.trim(),p=+$("np").value;if(!n||!p)return toast("Enter a service name and a price");P.services.push({n,p});$("ns").value=$("np").value="";saveP();svc()}
 /* ---------- app shell ---------- */
-function shell(){const tabs=[["radar","📡","Radar"],["ping","🚀","Ping"],["board","🎯","Board"],["me","🧑","Me"]];
- $("app").innerHTML=`<div class="top"><b>Nearby</b><span class="tag y" id="lvl"></span></div><div class="scr" id="main"></div><nav>${tabs.map(t=>`<button id="t_${t[0]}" onclick="tab('${t[0]}')"><span>${t[1]}</span>${t[2]}</button>`).join("")}</nav>`;hd();tab("radar");
+function shell(){const tabs=[["radar","Radar"],["ping","Ping"],["board","Board"],["me","Me"]];
+ $("app").innerHTML=`<div class="top">${LOGO.replace('width="84" height="84"','width="30" height="30"')}<b>Nearby</b><button onclick="tab('me')" aria-label="Your profile">${av(P.photo,P.emoji,36,P.verified)}</button></div><div class="scr" id="main"></div><nav>${tabs.map(t=>`<button id="t_${t[0]}" onclick="tab('${t[0]}')"><svg viewBox="0 0 24 24">${IC[t[0]]}</svg>${t[1]}</button>`).join("")}</nav>`;tab("radar");
  if(sb){sb.channel("o").on("postgres_changes",{event:"*",schema:"public",table:"offers"},refresh).subscribe();setInterval(refresh,10000)}
  setInterval(beat,60000);setInterval(()=>{if(cur=="radar")loadPV()},20000);refresh()}
 function tab(t){cur=t;document.querySelectorAll("nav button").forEach(b=>b.className=b.id=="t_"+t?"on":"");$("main").innerHTML=pane[t]();$("main").scrollTop=0;
  if(t=="radar"){lvb();loadPV()}if(t=="ping")$("rv").textContent=$("rad").value;if(t=="board")board();if(t=="me")svc()}
 const pane={
- radar:()=>`<div class="card"><button id="lv" class="btn big" onclick="goLive()"></button><div class="mu" id="lh" style="margin-top:8px"></div></div><div class="card" style="padding:8px"><svg id="map" class="map" viewBox="0 0 320 320" onclick="mapClick(event)" role="img" aria-label="Radar of nearby live providers"></svg><div class="row" style="margin-top:8px"><span class="mu" id="pcn"></span><button class="btn gh s" onclick="locate()">📍 GPS</button></div></div>${sb?"":`<button class="btn gh" onclick="spawn()">👀 Simulate a nearby request</button>`}`,
- ping:()=>`<h2>Ping for a service</h2><div class="card"><label for="q">What do you need?</label><input id="q" placeholder="e.g. plumber, wedding photos, logo design" onkeydown="if(event.key=='Enter')ping()"><div class="row"><div><label for="mn">Pay at least (₦)</label><input id="mn" type="number" inputmode="numeric" value="5000" step="500"></div><div><label for="mx">Pay at most (₦)</label><input id="mx" type="number" inputmode="numeric" value="15000" step="500"></div></div><label for="rad">Reach: <span id="rv">8</span> km</label><input id="rad" type="range" min="1" max="10" value="8" oninput="rv.textContent=this.value"><button class="btn co" id="pb" onclick="ping()">Send ping</button></div><p class="mu">Only providers who are live right now and offer a matching service are notified.</p>`,
+ radar:()=>`<div class="card"><div class="row" style="gap:12px"><div class="f">${av(P.photo,P.emoji,56,P.verified)}</div><div><b id="st"></b><div class="mu" id="lh"></div></div></div><button id="lv" class="btn" onclick="goLive()"></button></div>${P.verified?"":`<div class="card warn"><h3>Verify your face</h3><div class="mu">You need a quick live face scan before you can go live or send pings.</div><button class="btn gh" onclick="verifySheet()">Verify now</button></div>`}<div class="card" style="padding:10px"><svg id="map" class="map" viewBox="0 0 320 320" onclick="mapClick(event)" role="img" aria-label="Radar of nearby verified providers"></svg><div class="row" style="margin-top:10px"><span class="mu" id="pcn"></span><button class="btn gh s f" onclick="locate()">Use GPS</button></div></div>${sb?"":`<button class="btn ln" onclick="spawn()">Simulate a nearby request</button>`}`,
+ ping:()=>`<h2>Ping for a service</h2><div class="card"><label for="q" style="margin-top:0">What do you need?</label><input id="q" placeholder="e.g. plumber, wedding photos, logo design" onkeydown="if(event.key=='Enter')ping()"><div class="row"><div><label for="mn">Pay at least (₦)</label><input id="mn" type="number" inputmode="numeric" value="5000" step="500"></div><div><label for="mx">Pay at most (₦)</label><input id="mx" type="number" inputmode="numeric" value="15000" step="500"></div></div><label for="rad">Reach: <span id="rv">8</span> km</label><input id="rad" type="range" min="1" max="10" value="8" oninput="rv.textContent=this.value" style="padding:0"><button class="btn" id="pb" onclick="ping()">Send ping</button></div><p class="mu">Only face-verified providers who are live right now and offer a matching service are notified. Providers see your verified photo.</p>`,
  board:()=>`<h2>Your board</h2><div id="fd"></div>`,
- me:()=>`<div class="card"><div class="row"><div style="font-size:40px;flex:0 0 auto">${esc(P.emoji)}</div><div><input value="${esc(P.name)}" onchange="P.name=this.value.trim()||P.name;saveP()" aria-label="Display name"><div class="mu">${esc(U.email)}</div></div></div><div class="bar" style="margin-top:12px"><i style="width:${P.xp%100}%"></i></div><div class="mu">Level ${lvl()} · ${P.xp%100}/100 XP · ${P.deals} deals</div></div><div class="card"><h2>🧰 My services</h2><div id="sv"></div>${addRow()}</div><div class="card mu">${sb?"Live mode: connected to your Supabase project.":"Demo mode: data stays in this browser. Add Supabase keys in config.js to go live."}</div><button class="btn gh" onclick="signOut()">Sign out</button>`};
+ me:()=>`<div class="card">${photoBox()}<label for="dn">Display name</label><input id="dn" value="${esc(P.name)}" onchange="P.name=this.value.trim()||P.name;saveP()"><div class="mu" style="margin-top:8px">${esc(U.email)}</div></div><div class="card"><h3>Identity</h3>${P.verified?`<span class="tag g">Face verified</span><div class="mu" style="margin:8px 0">You scan your face each time you go live. Changing your photo only works if it matches your verified face.</div><button class="btn ln" onclick="wipeFace()">Delete my face data</button>`:`<span class="tag y">Not verified</span><div class="mu" style="margin:8px 0">Verify to go live and send pings.</div><button class="btn" onclick="verifySheet()">Verify now</button>`}</div><div class="card"><h3>My services</h3><div id="sv"></div>${addRow()}</div><div class="card"><h3>Progress</h3><div class="bar"><i style="width:${P.xp%100}%"></i></div><div class="mu" style="margin-top:6px">Level ${lvl()} · ${P.xp%100}/100 XP · ${P.deals} deals</div></div><div class="mu" style="margin:0 4px 12px">${sb?"Live mode: connected to your Supabase project.":"Demo mode: data stays in this browser. Add Supabase keys in config.js to go live."}</div><button class="btn gh" onclick="signOut()">Sign out</button>`};
 /* ---------- radar + location ---------- */
-function lvb(){const b=$("lv");if(!b)return;b.className="btn big "+(P.live?"on":"co");b.textContent=P.live?"🟢 You are live. Tap to go offline":"🔴 You are offline. Go live";$("lh").textContent=P.live?"People nearby who ping for your services can reach you.":"Offline users never appear in anyone’s search."}
-async function goLive(){P.live=!P.live;if(P.live){try{Notification.requestPermission()}catch(e){}if(!P.services.length)toast("Add a service in Me so people can find you");else if(!sb)setTimeout(()=>{if(P.live&&!O.some(o=>o.provider==U.id))spawn()},6000)}await saveP();lvb();loadPV()}
+function lvb(){const b=$("lv");if(!b)return;b.className="btn "+(P.live?"gh":"");b.textContent=P.live?"Go offline":"Go live with face scan";$("st").textContent=P.live?"You’re live":"You’re offline";$("lh").textContent=P.live?"Verified people nearby can find you.":"Offline users never appear in anyone’s search."}
+async function goLive(){if(P.live){P.live=false;await saveP();lvb();loadPV();return}
+ if(!P.verified)return verifySheet();const ref=await getRef();if(!ref){P.verified=false;await saveP();return verifySheet()}
+ const d=await scan();if(!d)return;if(dist(d,ref)>TH)return toast("We couldn’t match your face to your verified profile. Try again in good light.");
+ P.live=true;try{Notification.requestPermission()}catch(e){}if(!P.services.length)toast("Tip: add a service in Me so people can find you");else if(!sb)setTimeout(()=>{if(P.live&&!O.some(o=>o.provider==U.id))spawn()},6000);
+ await saveP();lvb();loadPV();toast("You’re live")}
 function beat(){if(P.live)saveP()}
-function locate(cb){try{navigator.geolocation.getCurrentPosition(p=>{me={lat:p.coords.latitude,lng:p.coords.longitude};A={...me};if(P.live)saveP();toast("Location locked 📍");cb&&cb();if(cur=="radar")loadPV()},()=>{toast("Location blocked. You can tap the radar to place yourself.");cb&&cb()})}catch(e){cb&&cb()}}
+function locate(cb){try{navigator.geolocation.getCurrentPosition(p=>{me={lat:p.coords.latitude,lng:p.coords.longitude};A={...me};if(P.live)saveP();toast("Location locked");cb&&cb();if(cur=="radar")loadPV()},()=>toast("Location blocked. You can tap the radar to place yourself."))}catch(e){}}
 function mapClick(e){const b=$("map").getBoundingClientRect(),x=(e.clientX-b.left)/b.width*320,y=(e.clientY-b.top)/b.height*320;me={lat:A.lat-(y-160)/14/111,lng:A.lng+(x-160)/14/KX()};if(P.live)saveP();draw()}
 async function providers(){if(!sb)return V.map(([id,name,emoji,dx,dy,rating,rcount,s])=>({id,name,emoji,lat:A.lat+dy/111,lng:A.lng+dx/KX(),rating,rcount,services:s.map(([n,p])=>({n,p}))}));
- const{data}=await sb.from("profiles").select("*").eq("live",true).gt("seen",new Date(Date.now()-3*6e4).toISOString()).neq("id",U.id);return data||[]}
+ const{data}=await sb.from("profiles").select("id,name,emoji,photo,services,lat,lng,rating,rcount").eq("live",true).eq("verified",true).gt("seen",new Date(Date.now()-3*6e4).toISOString()).neq("id",U.id);return data||[]}
 async function loadPV(){PV=await providers();draw()}
 const pj=p=>[160+(p.lng-A.lng)*KX()*14,160-(p.lat-A.lat)*1554];
 function draw(){const s=$("map");if(!s)return;const m=pj(me),wait=new Set(O.filter(o=>o.client==U.id&&o.status=="pending").map(o=>o.provider));
- let h=[2,4,6,8,10].map(k=>`<circle cx="160" cy="160" r="${k*14}" fill="none" stroke="#3a2f86" stroke-dasharray="3 5"/>`).join("")+`<g class="sweep"><path d="M160 160L300 160A140 140 0 0 0 260 61Z" fill="#3de0ff" opacity=".12"/></g>`;
- PV.forEach(v=>{const p=pj(v);h+=`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#ffc933">${wait.has(v.id)?'<animate attributeName="r" values="6;14;6" dur="1s" repeatCount="indefinite"/>':""}</circle><text x="${p[0]+9}" y="${p[1]+4}" font-size="12">${esc(v.emoji)}</text>`});
- h+=`<circle cx="${m[0]}" cy="${m[1]}" r="8" fill="${P.live?"#5af2b0":"#ff5c7a"}" stroke="#fff" stroke-width="2"/><text x="${m[0]}" y="${m[1]-12}" font-size="10" text-anchor="middle" fill="#fff">You</text>`;s.innerHTML=h;$("pcn").textContent=`${PV.length} live provider${PV.length==1?"":"s"} nearby`}
+ let h=[2,4,6,8,10].map(k=>`<circle cx="160" cy="160" r="${k*14}" fill="none" stroke="#2e2765" stroke-dasharray="3 5"/>`).join("")+`<g class="sweep"><path d="M160 160L300 160A140 140 0 0 0 260 61Z" fill="#4fd8ff" opacity=".12"/></g>`;
+ PV.forEach(v=>{const p=pj(v);h+=`${wait.has(v.id)?`<circle cx="${p[0]}" cy="${p[1]}" r="12" fill="none" stroke="#ffc933" stroke-width="2"><animate attributeName="r" values="12;22;12" dur="1.2s" repeatCount="indefinite"/></circle>`:""}${v.photo?`<image href="${v.photo}" x="${p[0]-11}" y="${p[1]-11}" width="22" height="22" style="clip-path:circle(50%)"/><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="none" stroke="#4be3a4" stroke-width="2"/>`:`<circle cx="${p[0]}" cy="${p[1]}" r="11" fill="#211b4a" stroke="#4be3a4" stroke-width="2"/><text x="${p[0]}" y="${p[1]+4}" font-size="12" text-anchor="middle">${esc(v.emoji)}</text>`}`});
+ h+=P.photo?`<image href="${P.photo}" x="${m[0]-12}" y="${m[1]-12}" width="24" height="24" style="clip-path:circle(50%)"/><circle cx="${m[0]}" cy="${m[1]}" r="12" fill="none" stroke="${P.live?"#4be3a4":"#ff5c7a"}" stroke-width="3"/>`:`<circle cx="${m[0]}" cy="${m[1]}" r="9" fill="${P.live?"#4be3a4":"#ff5c7a"}" stroke="#fff" stroke-width="2"/>`;
+ s.innerHTML=h;$("pcn").textContent=`${PV.length} verified provider${PV.length==1?"":"s"} live nearby`}
 /* ---------- offers ---------- */
-async function ping(){const q=$("q").value.trim(),mn=+$("mn").value,mx=+$("mx").value,rad=+$("rad").value;
+async function ping(){if(!P.verified)return verifySheet();const q=$("q").value.trim(),mn=+$("mn").value,mx=+$("mx").value,rad=+$("rad").value;
  if(!q)return toast("Type what you need first");if(!mn||!mx||mn>mx)return toast("Set a pay range: min must not exceed max");
  const b=$("pb");b.disabled=true;const ps=await providers(),req=(crypto.randomUUID?crypto.randomUUID():String(Date.now()));
  const rows=ps.map(v=>({v,s:(v.services||[]).find(s=>hit(q,s.n)),d:hav(me,v)})).filter(h=>h.s&&h.d<=rad).map(h=>({req,client:U.id,provider:h.v.id,cname:P.name,pname:h.v.name,pemoji:h.v.emoji,prating:h.v.rating||0,pcount:h.v.rcount||0,q,min_pay:mn,max_pay:mx,service:h.s.n,price:h.s.p,status:"pending",dist:+h.d.toFixed(1)}));
- b.disabled=false;if(!rows.length)return toast("No live provider offers that within reach yet. Try a wider reach or different words.");
+ b.disabled=false;if(!rows.length)return toast("No verified provider offers that within reach yet. Try a wider reach or different words.");
  if(sb){const{error}=await sb.from("offers").insert(rows);if(error)return toast("Could not send: "+error.message)}
  else rows.forEach(r=>{r.id=nid++;O.push(r);setTimeout(()=>{if(r.status!="pending")return;r.status=r.price<=mx?"accepted":r.price<=mx*1.3?"countered":"declined";refresh()},1500+r.dist*600+Math.random()*1500)});
- xp(5);$("q").value="";toast(`Pinged ${rows.length} live provider${rows.length>1?"s":""} 📡`);tab("board");refresh()}
+ xp(5);$("q").value="";toast(`Pinged ${rows.length} verified provider${rows.length>1?"s":""}`);tab("board");refresh()}
 async function upd(id,patch){if(sb){const{error}=await sb.from("offers").update(patch).eq("id",id);if(error)toast(error.message)}else Object.assign(O.find(o=>o.id==id),patch);await refresh()}
 async function quote(id){const o=O.find(x=>x.id==id),p=+$("p"+id).value;if(!p||p<=0)return toast("Enter a price");await upd(id,{price:p,status:p<=o.max_pay?"accepted":"countered"});xp(10);
  if(!sb&&String(o.client)[0]=="c")setTimeout(()=>{const x=O.find(z=>z.id==id);if(!x||!["accepted","countered"].includes(x.status))return;if(x.price<=x.max_pay*1.2){x.status="deal";rw.add(id);dealXP();toast(`${x.cname} accepted ${fmt(x.price)}`)}else{x.status="declined";toast(`${x.cname} passed on your quote`)}refresh()},3000)}
 const decline=id=>upd(id,{status:"declined"});
-async function connect(id){const o=O.find(x=>x.id==id),live=["pending","accepted","countered"];
- if(sb){await sb.from("offers").update({status:"deal"}).eq("id",id);await sb.from("offers").update({status:"closed"}).eq("req",o.req).neq("id",id).in("status",live)}
- else O.forEach(x=>{if(x.req==o.req)x.status=x.id==id?"deal":live.includes(x.status)?"closed":x.status});
- dealXP();toast("Deal locked in! 🚀");await refresh()}
+async function connect(id){const o=O.find(x=>x.id==id),liv=["pending","accepted","countered"];
+ if(sb){await sb.from("offers").update({status:"deal"}).eq("id",id);await sb.from("offers").update({status:"closed"}).eq("req",o.req).neq("id",id).in("status",liv)}
+ else O.forEach(x=>{if(x.req==o.req)x.status=x.id==id?"deal":liv.includes(x.status)?"closed":x.status});dealXP();toast("Deal locked in!");await refresh()}
 function spawn(){if(!P.live)return toast("Go live first to receive requests");if(!P.services.length)return toast("Add a service in Me first");
  const s=P.services[Math.floor(Math.random()*P.services.length)],id=nid++,mx=R5(s.p*(.85+Math.random()*.4));
  O.push({id,req:"s"+id,client:"c"+id,provider:U.id,cname:["Amaka","Bola","Chinedu","Dele","Efe"][id%5],pname:P.name,q:s.n,service:s.n,min_pay:R5(mx*.6),max_pay:mx,price:s.p,status:"pending",dist:+(.5+Math.random()*5).toFixed(1)});refresh()}
-async function rate(id,pid,st){const t=prompt("Add a short comment (optional)")||"";if(sb){const{error}=await sb.from("reviews").insert({provider:pid,author_name:P.name,stars:st,body:t});if(error)return toast(error.message)}rw.add("r"+id);L.set("nb_rw",[...rw]);toast("Thanks for rating! ⭐");xp(5);board()}
+async function rate(id,pid,st){const t=prompt("Add a short comment (optional)")||"";if(sb){const{error}=await sb.from("reviews").insert({provider:pid,author_name:P.name,stars:st,body:t});if(error)return toast(error.message)}rw.add("r"+id);L.set("nb_rw",[...rw]);toast("Thanks for rating!");xp(5);board()}
 async function togRev(k,pid){if(!open[k]&&!RV[pid]){if(sb){const{data}=await sb.from("reviews").select("*").eq("provider",pid).order("created",{ascending:false}).limit(3);RV[pid]=data||[]}else RV[pid]=DREV}open[k]=!open[k];board()}
-async function refresh(){if(sb){const{data,error}=await sb.from("offers").select("*").or(`client.eq.${U.id},provider.eq.${U.id}`).order("created",{ascending:false}).limit(100);if(error)return;O=data||[]}
- O.forEach(o=>{if(o.provider==U.id&&o.status=="pending"&&!seen.has(o.id)){seen.add(o.id);toast(`📡 ${o.cname} needs ${o.service} nearby`)}
-  if(o.client==U.id&&prev[o.id]=="pending"&&o.status!="pending")toast(o.status=="declined"?`${o.pname} declined`:`${o.pemoji} ${o.pname} quoted ${fmt(o.price)}`);
-  if(o.provider==U.id&&o.status=="deal"&&!rw.has(o.id)){rw.add(o.id);L.set("nb_rw",[...rw]);dealXP();toast(`Deal confirmed with ${o.cname} at ${fmt(o.price)} 🎉`)}prev[o.id]=o.status});
- const n=O.filter(o=>(o.provider==U.id&&o.status=="pending")||(o.client==U.id&&["accepted","countered"].includes(o.status))).length,t=$("t_board");if(t){const i=t.querySelector("i");i&&i.remove();if(n)t.insertAdjacentHTML("beforeend",`<i>${n}</i>`)}
+async function refresh(){if(sb){const{data,error}=await sb.from("offers").select("*").or(`client.eq.${U.id},provider.eq.${U.id}`).order("created",{ascending:false}).limit(100);if(error)return;O=data||[];
+  const ids=[...new Set(O.flatMap(o=>[o.client,o.provider]))].filter(i=>i!=U.id&&!(i in PH));if(ids.length){const{data:ps}=await sb.from("profiles").select("id,photo,verified").in("id",ids);(ps||[]).forEach(x=>PH[x.id]={p:x.photo,v:x.verified})}}
+ O.forEach(o=>{if(o.provider==U.id&&o.status=="pending"&&!seen.has(o.id)&&PH[o.client]?.v!==false){seen.add(o.id);toast(`${o.cname} needs ${o.service} nearby`)}
+  if(o.client==U.id&&prev[o.id]=="pending"&&o.status!="pending")toast(o.status=="declined"?`${o.pname} declined`:`${o.pname} quoted ${fmt(o.price)}`);
+  if(o.provider==U.id&&o.status=="deal"&&!rw.has(o.id)){rw.add(o.id);L.set("nb_rw",[...rw]);dealXP();toast(`Deal confirmed with ${o.cname} at ${fmt(o.price)}`)}prev[o.id]=o.status});
+ const n=O.filter(o=>(o.provider==U.id&&o.status=="pending"&&PH[o.client]?.v!==false)||(o.client==U.id&&["accepted","countered"].includes(o.status))).length,t=$("t_board");if(t){const i=t.querySelector("i");i&&i.remove();if(n)t.insertAdjacentHTML("beforeend",`<i>${n}</i>`)}
  if(cur=="board"&&!(document.activeElement&&document.activeElement.tagName=="INPUT"))board();if(cur=="radar")draw()}
-function board(){const f=$("fd");if(!f)return;const inc=O.filter(o=>o.provider==U.id),mine=O.filter(o=>o.client==U.id),g={};mine.forEach(o=>(g[o.req]=g[o.req]||[]).push(o));
- const ih=inc.map(o=>{let b="";const t=(c,x)=>`<span class="tag ${c}">${x}</span>`;
-  if(o.status=="pending")b=`<div class="row"><input id="p${o.id}" type="number" inputmode="numeric" step="500" value="${o.price}" aria-label="Your quote"><button class="btn cy s" onclick="quote(${o.id})">Send quote</button></div><button class="btn gh" onclick="decline(${o.id})">Decline</button>`;
-  else if(o.status=="accepted"||o.status=="countered")b=t("y",`Quote sent: ${fmt(o.price)}. Waiting for ${esc(o.cname)}`);else if(o.status=="deal")b=t("g",`Deal at ${fmt(o.price)} 🎉`);else b=t("r",o.status=="closed"?"Client chose someone else":"Declined");
-  return `<div class="of"><b>📥 ${esc(o.cname)} needs ${esc(o.service)}</b><div class="mu">${o.dist} km away · pays ${fmt(o.min_pay)} to ${fmt(o.max_pay)} · your rate ${fmt(P.services.find(s=>s.n==o.service)?.p??o.price)}</div><div style="margin-top:8px">${b}</div></div>`}).join("");
- const oh=Object.values(g).map(a=>{const done=a.find(o=>o.status=="deal"),r=a[0];return `<div class="card"><b>📤 ${esc(r.q)}</b> <span class="mu">${fmt(r.min_pay)} to ${fmt(r.max_pay)}</span><div class="mu">Notified ${a.length} provider${a.length>1?"s":""}</div>${done?`<div style="margin:8px 0"><span class="tag g">Connected with ${esc(done.pname)} at ${fmt(done.price)} 🎉</span></div>${rw.has("r"+done.id)?"":`<div class="stars mu">Rate this job: ${[1,2,3,4,5].map(s=>`<button onclick="rate(${done.id},'${done.provider}',${s})" aria-label="${s} stars">${s}★</button>`).join("")}</div>`}`:""}${a.filter(o=>!done||o.id==done.id).sort((x,y)=>x.dist-y.dist).map(o=>{const k=o.id;
-   if(o.status=="pending")return `<div class="mu" style="margin:6px 0">${esc(o.pemoji)} ${esc(o.pname)} · ${o.dist} km · waiting…</div>`;
-   if(o.status=="declined"||o.status=="closed")return `<div class="mu" style="margin:6px 0;opacity:.6">${esc(o.pemoji)} ${esc(o.pname)} ${o.status=="closed"?"was not chosen":"declined"}</div>`;
-   return `<div class="of"><div class="row"><div><b>${esc(o.pemoji)} ${esc(o.pname)}</b> <span class="tag ${o.status=="countered"?"y":"g"}">${o.status=="countered"?"Above your range":o.status=="deal"?"Connected":"In your range"}</span><div class="mu">${o.pcount?`${stars(o.prating)} ${(+o.prating).toFixed(1)} (${o.pcount})`:"New, no reviews yet"} · ${o.dist} km</div></div><div class="s"><b>${fmt(o.price)}</b></div></div><div class="row" style="margin-top:8px"><button class="btn gh" style="margin:0" onclick="togRev(${k},'${o.provider}')">${open[k]?"Hide":"Read"} reviews</button>${done?"":`<button class="btn" style="margin:0" onclick="connect(${k})">Connect</button>`}</div>${open[k]?(RV[o.provider]||[]).map(r=>`<div class="rev">${stars(r.stars)} <b>${esc(r.author_name)}</b>${r.body?": "+esc(r.body):""}</div>`).join("")||'<div class="mu">No written reviews yet.</div>':""}</div>`}).join("")}</div>`}).join("");
+function board(){const f=$("fd");if(!f)return;const inc=O.filter(o=>o.provider==U.id&&PH[o.client]?.v!==false),mine=O.filter(o=>o.client==U.id),g={};mine.forEach(o=>(g[o.req]=g[o.req]||[]).push(o));const tg=(c,x)=>`<span class="tag ${c}">${x}</span>`;
+ const ih=inc.map(o=>{let b="";
+  if(o.status=="pending")b=`<div class="row"><input id="p${o.id}" type="number" inputmode="numeric" step="500" value="${o.price}" aria-label="Your quote"><button class="btn cy s" onclick="quote(${o.id})">Send quote</button></div><button class="btn gh sm" style="width:100%;margin-top:8px" onclick="decline(${o.id})">Decline</button>`;
+  else if(o.status=="accepted"||o.status=="countered")b=tg("y",`Quote sent: ${fmt(o.price)}. Waiting for ${esc(o.cname)}`);else if(o.status=="deal")b=tg("g",`Deal at ${fmt(o.price)}`);else b=tg("r",o.status=="closed"?"Client chose someone else":"Declined");
+  return `<div class="card"><div class="row" style="gap:12px"><div class="f">${av(PH[o.client]?.p,"🙂",48,!sb||PH[o.client]?.v)}</div><div><b>${esc(o.cname)} needs ${esc(o.service)}</b><div class="mu">${o.dist} km away · pays ${fmt(o.min_pay)} to ${fmt(o.max_pay)} · your rate ${fmt(P.services.find(s=>s.n==o.service)?.p??o.price)}</div></div></div><div style="margin-top:10px">${b}</div></div>`}).join("");
+ const oh=Object.values(g).map(a=>{const done=a.find(o=>o.status=="deal"),r=a[0];return `<div class="card"><b>${esc(r.q)}</b> <span class="mu">${fmt(r.min_pay)} to ${fmt(r.max_pay)}</span><div class="mu">Notified ${a.length} verified provider${a.length>1?"s":""}</div>${done?`<div style="margin:8px 0">${tg("g",`Connected with ${esc(done.pname)} at ${fmt(done.price)}`)}</div>${rw.has("r"+done.id)?"":`<div class="stars mu">Rate this job: ${[1,2,3,4,5].map(s=>`<button onclick="rate(${done.id},'${done.provider}',${s})" aria-label="${s} stars">${s}★</button>`).join("")}</div>`}`:""}${a.filter(o=>!done||o.id==done.id).sort((x,y)=>x.dist-y.dist).map(o=>{const k=o.id,ph=PH[o.provider]?.p;
+   if(o.status=="pending")return `<div class="row mu" style="margin:8px 0;gap:10px"><div class="f">${av(ph,o.pemoji,34,true)}</div><div>${esc(o.pname)} · ${o.dist} km · waiting…</div></div>`;
+   if(o.status=="declined"||o.status=="closed")return `<div class="row mu" style="margin:8px 0;gap:10px;opacity:.6"><div class="f">${av(ph,o.pemoji,34)}</div><div>${esc(o.pname)} ${o.status=="closed"?"was not chosen":"declined"}</div></div>`;
+   return `<div class="of"><div class="row" style="gap:12px"><div class="f">${av(ph,o.pemoji,48,true)}</div><div><b>${esc(o.pname)}</b> ${tg(o.status=="countered"?"y":"g",o.status=="countered"?"Above your range":o.status=="deal"?"Connected":"In your range")}<div class="mu">${o.pcount?`${stars(o.prating)} ${(+o.prating).toFixed(1)} (${o.pcount})`:"New, no reviews yet"} · ${o.dist} km</div></div><div class="f"><b>${fmt(o.price)}</b></div></div><div class="row" style="margin-top:10px"><button class="btn gh sm" onclick="togRev(${k},'${o.provider}')">${open[k]?"Hide":"Read"} reviews</button>${done?"":`<button class="btn sm" onclick="connect(${k})">Connect</button>`}</div>${open[k]?(RV[o.provider]||[]).map(r=>`<div class="rev">${stars(r.stars)} <b>${esc(r.author_name)}</b>${r.body?": "+esc(r.body):""}</div>`).join("")||'<div class="mu" style="margin-top:8px">No written reviews yet.</div>':""}</div>`}).join("")}</div>`}).join("");
  f.innerHTML=(ih||oh)?ih+oh:`<div class="empty">Nothing here yet.<br>Send a ping, or go live so people can ping you.</div>`}
 boot();
 </script></body></html>
